@@ -1,14 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import Duck from "./components/Duck";
+import ClosedDuck from './components/ClosedDuck';
+// import { useQuack } from "./hooks/useQuack";
 
 function App() {
-    const { data } = useQuery({
-        queryFn: async () => {
-            const { data } = await axios.get('/');
-            return data;
-        },
-    });
-    return <>{data}</>;
+
+    // const {data, isLoading} = useQuack();
+
+    return <><Duck/>
+        <ClosedDuck />
+    </>;
 }
 
 export default App;
