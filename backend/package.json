@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon src/app.js",
+    "start": "nodemon src/server.js",
     "build": "webpack && chmod +x outputFile",
     "prod": "node dist/finals.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +15,9 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1",

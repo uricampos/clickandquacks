@@ -4,7 +4,7 @@ import axios from 'axios';
 export const useQuack = () => {
     return useQuery({
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:4000/api');
+            const { data } = await axios.get('http://localhost:6000/quacks');
             return data;
         },
     });
