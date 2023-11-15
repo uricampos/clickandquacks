@@ -1,28 +1,39 @@
 import Duck from './components/Duck';
 import ClosedDuck from './components/ClosedDuck';
-import { useState } from 'react';
-// import { useQuack } from "./hooks/useQuack";
+import { useEffect, useState } from 'react';
 import './App.css';
+import axios from 'axios';
 
 function App() {
-    // const {data, isLoading} = useQuack();
     const [click, setClick] = useState(false);
-    const [quack, setQuack] = useState(0);
+    const [quacks, setQuacks] = useState();
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/quacks').then((response) => {
+            setQuacks(response.data[0].count);
+        });
+    });
+
+    function patchQuack() {
+        axios.patch('http://localhost:5000/quacks/6554da4e4d3c6879291982c6', {count: quacks}).then((response) => {
+            console.log(response);
+        });
+    }
 
     function handleClick() {
+        patchQuack();
         setClick(true);
-        setQuack(quack + 1);
         setTimeout(() => {
             setClick(false);
         }, 1000);
     }
 
     return (
-        <div className='container'>
+        <div className="container">
             <button onClick={handleClick} className="button">
                 {click ? <Duck /> : <ClosedDuck />}
             </button>
-            <div className='quack-count'>Quack count: {quack}</div>
+            <div className="quack-count">Quack count: {quacks}</div>
         </div>
     );
 }
