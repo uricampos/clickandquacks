@@ -1,5 +1,5 @@
 import express from 'express';
-import testRouter from './routes/test.js';
+import QuackRouter from './routes/quack.js';
 import cors from 'cors';
 
 const app = express();
@@ -7,6 +7,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api", testRouter);
+app.use("/quacks", QuackRouter);
 
-app.listen(4000, () => console.log('server running on port 4000'));
+export default app;
