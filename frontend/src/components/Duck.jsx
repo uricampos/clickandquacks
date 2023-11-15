@@ -3,9 +3,8 @@ import './duck.css';
 
 function Duck() {
   return (
-    <div>
+    <div className='duck-div'>
         <img src={duck} alt="duck" className='duck'/>
-
     </div>
   )
 }
