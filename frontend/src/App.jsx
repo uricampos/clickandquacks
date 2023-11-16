@@ -1,6 +1,6 @@
 import Duck from './components/Duck';
 import ClosedDuck from './components/ClosedDuck';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
@@ -8,16 +8,14 @@ function App() {
     const [click, setClick] = useState(false);
     const [quacks, setQuacks] = useState();
 
-    useEffect(() => {
-        axios
-            .get(import.meta.env.VITE_GET_QUACKS)
-            .then((response) => {
-                setQuacks(response.data[0].count);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    });
+    axios
+        .get(import.meta.env.VITE_GET_QUACKS)
+        .then((response) => {
+            setQuacks(response.data[0].count);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 
     function patchQuack() {
         axios
