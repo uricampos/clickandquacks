@@ -8,11 +8,11 @@ WORKDIR /usr/app
 COPY package.json ./package.json
 COPY package-lock.json ./package-lock.json
  
+ # Get all the code needed to run the app
+COPY . .
+
 # Install dependencies
 RUN npm i
- 
-# Get all the code needed to run the app
-COPY . .
  
 # Expose the port the app runs in
 EXPOSE 5173
