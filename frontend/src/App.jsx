@@ -5,14 +5,6 @@ import axios from 'axios';
 import './App.css';
 
 async function getQuacks(setQuacks) {
-    // await axios
-    //     .get(import.meta.env.VITE_GET_QUACKS)
-    //     .then((response) => {
-    //         setQuacks(response.data[0].count);
-    //     })
-    //     .catch((error) => {
-    //         console.error(error);
-    //     });
     try {
         const res = await axios.get(import.meta.env.VITE_GET_QUACKS);
         setQuacks(res.data[0].count);
