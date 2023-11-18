@@ -2,6 +2,7 @@ import Duck from './components/Duck';
 import ClosedDuck from './components/ClosedDuck';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Howl } from 'howler';
 import './App.css';
 
 async function getQuacks(setQuacks) {
@@ -24,9 +25,10 @@ function patchQuack(quacks) {
         });
 }
 
-function handleClick(setClick, quacks) {
+function handleClick(setClick, quacks, sound) {
     patchQuack(quacks);
     setClick(true);
+    sound.play();
     setTimeout(() => {
         setClick(false);
     }, 500);
@@ -45,26 +47,35 @@ function App() {
     const [click, setClick] = useState(false);
     const [quacks, setQuacks] = useState([]);
 
+    const [sound, setSound] = useState(null);
+
     useEffect(() => {
         pollingQuacks(setQuacks);
 
+        const soundInstance = new Howl({
+            src: ['/quack.mp3'],
+        });
+
+        setSound(soundInstance);
+
         return () => {
             clearInterval(pollingQuacks);
-        }
-    }, [])
+            soundInstance.unload();
+        };
+    }, []);
 
     return (
         <div className="container">
             <h1>You click and it quacks!</h1>
             <button
-                onClick={async() => {
-                    handleClick(setClick, quacks);
+                onClick={async () => {
+                    handleClick(setClick, quacks, sound);
                 }}
                 className="button"
             >
                 {click ? <Duck /> : <ClosedDuck />}
             </button>
-            <div className="quack-count">Quacks count: {quacks}</div>
+            <div className="quack-count">It quacked {quacks} times...</div>
         </div>
     );
 }
