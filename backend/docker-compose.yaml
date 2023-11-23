@@ -1,8 +1,9 @@
 version: "3.2"
 
 services:
-  click-quack:
-    image: click-and-quacks:0.0.1  
+  click-quack-backend:
+    image: click-and-quacks:0.0.1
+    container_name: backend_click-quack
     environment:
       NODE_TEST: Meu_valor
     volumes:

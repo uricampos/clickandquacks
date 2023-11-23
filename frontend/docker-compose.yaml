@@ -1,7 +1,7 @@
 version: "3.2"
 
 services:
-  click-quack:
+  click-quack-frontend:
     image: click-and-quacks-front:0.0.1  
     environment:
       NODE_TEST: Meu_valor
